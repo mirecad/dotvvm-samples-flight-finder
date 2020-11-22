@@ -39,16 +39,16 @@ namespace FlightFinder.Web.Api
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         [DotVVM.Framework.Configuration.RestApiRegistrationHelpers.HttpMethod("Get")]
-        public System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport> ApiAirportsGet()
+        public System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport> Airports()
         {
-            return System.Threading.Tasks.Task.Run(async () => await ApiAirportsGetAsync(System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+            return System.Threading.Tasks.Task.Run(async () => await AirportsAsync(System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
     
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         [DotVVM.Framework.Configuration.RestApiRegistrationHelpers.HttpMethod("Get")]
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport>> ApiAirportsGetAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport>> AirportsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Airports");
@@ -116,16 +116,16 @@ namespace FlightFinder.Web.Api
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         [DotVVM.Framework.Configuration.RestApiRegistrationHelpers.HttpMethod("Post")]
-        public System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary> ApiFlightSearchPost(FlightFinder.Shared.SearchCriteria criteria = null)
+        public System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary> Search(FlightFinder.Shared.SearchCriteria criteria = null)
         {
-            return System.Threading.Tasks.Task.Run(async () => await ApiFlightSearchPostAsync(criteria, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+            return System.Threading.Tasks.Task.Run(async () => await SearchAsync(criteria, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
     
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         [DotVVM.Framework.Configuration.RestApiRegistrationHelpers.HttpMethod("Post")]
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary>> ApiFlightSearchPostAsync(FlightFinder.Shared.SearchCriteria criteria = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary>> SearchAsync(FlightFinder.Shared.SearchCriteria criteria = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FlightSearch");

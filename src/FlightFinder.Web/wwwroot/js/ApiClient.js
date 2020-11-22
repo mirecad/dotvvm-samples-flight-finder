@@ -1,7 +1,10 @@
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -42,7 +45,7 @@ var FlightFinder;
                 /**
                  * @return Success
                  */
-                Client.prototype.apiAirportsGet = function () {
+                Client.prototype.airports = function () {
                     var _this = this;
                     var url_ = this.baseUrl + "/api/Airports";
                     url_ = url_.replace(/[?&]$/, "");
@@ -56,10 +59,10 @@ var FlightFinder;
                     return this.transformOptions(options_).then(function (transformedOptions_) {
                         return _this.http.fetch(url_, transformedOptions_);
                     }).then(function (_response) {
-                        return _this.processApiAirportsGet(_response);
+                        return _this.processAirports(_response);
                     });
                 };
-                Client.prototype.processApiAirportsGet = function (response) {
+                Client.prototype.processAirports = function (response) {
                     var _this = this;
                     var status = response.status;
                     var _headers = {};
@@ -92,7 +95,7 @@ var FlightFinder;
                  * @criteria (optional)
                  * @return Success
                  */
-                Client.prototype.apiFlightSearchPost = function (criteria) {
+                Client.prototype.search = function (criteria) {
                     var _this = this;
                     var url_ = this.baseUrl + "/api/FlightSearch";
                     url_ = url_.replace(/[?&]$/, "");
@@ -108,10 +111,10 @@ var FlightFinder;
                     return this.transformOptions(options_).then(function (transformedOptions_) {
                         return _this.http.fetch(url_, transformedOptions_);
                     }).then(function (_response) {
-                        return _this.processApiFlightSearchPost(_response);
+                        return _this.processSearch(_response);
                     });
                 };
-                Client.prototype.processApiFlightSearchPost = function (response) {
+                Client.prototype.processSearch = function (response) {
                     var _this = this;
                     var status = response.status;
                     var _headers = {};

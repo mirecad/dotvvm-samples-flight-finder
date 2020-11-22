@@ -27,7 +27,7 @@ namespace FlightFinder.Web.Api {
         /**
          * @return Success
          */
-        apiAirportsGet(): Promise<Airport[]> {
+        airports(): Promise<Airport[]> {
             let url_ = this.baseUrl + "/api/Airports";
             url_ = url_.replace(/[?&]$/, "");
     
@@ -42,11 +42,11 @@ namespace FlightFinder.Web.Api {
             return this.transformOptions(options_).then(transformedOptions_ => {
                 return this.http.fetch(url_, transformedOptions_);
             }).then((_response: Response) => {
-                return this.processApiAirportsGet(_response);
+                return this.processAirports(_response);
             });
         }
     
-        protected processApiAirportsGet(response: Response): Promise<Airport[]> {
+        protected processAirports(response: Response): Promise<Airport[]> {
             const status = response.status;
             let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v, k) => _headers[k] = v); };
             if (status === 200) {
@@ -72,7 +72,7 @@ namespace FlightFinder.Web.Api {
          * @criteria (optional) 
          * @return Success
          */
-        apiFlightSearchPost(criteria?: SearchCriteria): Promise<Itinerary[]> {
+        search(criteria?: SearchCriteria): Promise<Itinerary[]> {
             let url_ = this.baseUrl + "/api/FlightSearch";
             url_ = url_.replace(/[?&]$/, "");
     
@@ -90,11 +90,11 @@ namespace FlightFinder.Web.Api {
             return this.transformOptions(options_).then(transformedOptions_ => {
                 return this.http.fetch(url_, transformedOptions_);
             }).then((_response: Response) => {
-                return this.processApiFlightSearchPost(_response);
+                return this.processSearch(_response);
             });
         }
     
-        protected processApiFlightSearchPost(response: Response): Promise<Itinerary[]> {
+        protected processSearch(response: Response): Promise<Itinerary[]> {
             const status = response.status;
             let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v, k) => _headers[k] = v); };
             if (status === 200) {
