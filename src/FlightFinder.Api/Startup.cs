@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace FlightFinder.Api
@@ -35,7 +36,7 @@ namespace FlightFinder.Api
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info { Title = "Weekly Planner API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo() { Title = "Weekly Planner API", Version = "v1" });
                 options.EnableDotvvmIntegration();
             });
         }

@@ -9,12 +9,12 @@ namespace FlightFinder.Web.Api
     #pragma warning disable // Disable all warnings
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.12.13.0 (NJsonSchema v9.10.14.0 (Newtonsoft.Json v10.0.0.0))")]
-    public partial class Client 
+    public partial class ApiClient 
     {
         private string _baseUrl = "";
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public Client(string baseUrl)
+        public ApiClient(string baseUrl)
         {
             BaseUrl = baseUrl; 
     		_settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
@@ -39,16 +39,16 @@ namespace FlightFinder.Web.Api
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         [DotVVM.Framework.Configuration.RestApiRegistrationHelpers.HttpMethod("Get")]
-        public System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport> Airports()
+        public void GetAirports()
         {
-            return System.Threading.Tasks.Task.Run(async () => await AirportsAsync(System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+            System.Threading.Tasks.Task.Run(async () => await GetAirportsAsync(System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
     
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         [DotVVM.Framework.Configuration.RestApiRegistrationHelpers.HttpMethod("Get")]
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport>> AirportsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task GetAirportsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Airports");
@@ -59,7 +59,6 @@ namespace FlightFinder.Web.Api
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
@@ -78,17 +77,7 @@ namespace FlightFinder.Web.Api
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200") 
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport>); 
-                            try
-                            {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport>>(responseData_, _settings.Value);
-                                return result_; 
-                            } 
-                            catch (System.Exception exception_) 
-                            {
-                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
-                            }
+                            return;
                         }
                         else
                         if (status_ != "200" && status_ != "204")
@@ -96,8 +85,6 @@ namespace FlightFinder.Web.Api
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", status_, responseData_, headers_, null);
                         }
-            
-                        return default(System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Airport>);
                     }
                     finally
                     {
@@ -116,16 +103,16 @@ namespace FlightFinder.Web.Api
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         [DotVVM.Framework.Configuration.RestApiRegistrationHelpers.HttpMethod("Post")]
-        public System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary> Search(FlightFinder.Shared.SearchCriteria criteria = null)
+        public void PostFlightSearch()
         {
-            return System.Threading.Tasks.Task.Run(async () => await SearchAsync(criteria, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+            System.Threading.Tasks.Task.Run(async () => await PostFlightSearchAsync(System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
     
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         [DotVVM.Framework.Configuration.RestApiRegistrationHelpers.HttpMethod("Post")]
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary>> SearchAsync(FlightFinder.Shared.SearchCriteria criteria = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task PostFlightSearchAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FlightSearch");
@@ -135,11 +122,8 @@ namespace FlightFinder.Web.Api
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(criteria, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
+                    request_.Content = new System.Net.Http.StringContent(string.Empty);
                     request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
@@ -158,17 +142,7 @@ namespace FlightFinder.Web.Api
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200") 
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary>); 
-                            try
-                            {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary>>(responseData_, _settings.Value);
-                                return result_; 
-                            } 
-                            catch (System.Exception exception_) 
-                            {
-                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
-                            }
+                            return;
                         }
                         else
                         if (status_ != "200" && status_ != "204")
@@ -176,8 +150,6 @@ namespace FlightFinder.Web.Api
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", status_, responseData_, headers_, null);
                         }
-            
-                        return default(System.Collections.ObjectModel.ObservableCollection<FlightFinder.Shared.Itinerary>);
                     }
                     finally
                     {
@@ -197,31 +169,7 @@ namespace FlightFinder.Web.Api
     
     
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.14.0 (Newtonsoft.Json v10.0.0.0)")]
-    public enum SearchCriteriaTicketClass
-    {
-        _0 = 0,
     
-        _1 = 1,
-    
-        _2 = 2,
-    
-        _3 = 3,
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.14.0 (Newtonsoft.Json v10.0.0.0)")]
-    public enum TicketClassDataValue
-    {
-        _0 = 0,
-    
-        _1 = 1,
-    
-        _2 = 2,
-    
-        _3 = 3,
-    
-    }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.12.13.0 (NJsonSchema v9.10.14.0 (Newtonsoft.Json v10.0.0.0))")]
     public class SwaggerException : System.Exception
